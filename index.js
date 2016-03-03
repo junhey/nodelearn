@@ -11,3 +11,12 @@ var server = app.listen(3000, function () {
 
     console.log('Example app listening at http://%s:%s', host, port);
 });
+
+
+app.post('/page1', function (req, res) {
+  res.send('Got a page1');
+});
+
+app.post('/page1', function (req, res) {
+  res.send('Got a page2');
+});
