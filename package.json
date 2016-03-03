@@ -1,0 +1,22 @@
+{
+  "name": "nodelearn",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "nodelearn",
+  "author": "guosheng",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kyo4311/nodelearn.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kyo4311/nodelearn/issues"
+  },
+  "homepage": "",
+  "devDependencies": {
+      "express" : "4.13.4"
+  }
+}
