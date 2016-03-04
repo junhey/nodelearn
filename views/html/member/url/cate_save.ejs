@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>分类管理</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" type="text/css" href="/Semantic-UI/semantic.min.css">
+</head>
+<body>
+
+    <%- include('../head', {}) %>
+    
+    <h1 class="ui header">添加分类</h1>
+
+    <form>
+        <table>
+            <tr>
+                <td>分类名称：</td>
+                <td><input name="cate_name" /></td>
+            </tr>
+            <tr>
+                <td>排序值：</td>
+                <td><input name="cate_sort" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button>保存</button></td>
+            </tr>
+        </table>
+    </form>
+
+
+    <script type="text/javascript" src="/npm/jquery.min.js"></script>
+        <script type="text/javascript" src="/Semantic-UI/semantic.min.js"></script>
+        <script type="text/javascript">
+
+
+        var form = $('form');
+            
+        form.submit(function(){
+            $.post('/member/url/cate-save', form.serialize(), function(res){
+                if(!res.error_code) {
+                    window.location.href = '/member';
+                }
+            });
+            return false;
+        });
+
+        </script>
+
+</body>
+</html>

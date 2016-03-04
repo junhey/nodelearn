@@ -10,7 +10,6 @@ var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
 
-var crypto = require('crypto');
 
 mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;
@@ -19,7 +18,6 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(callback) {
     console.log('yay!');
 });
-
 
 
 var UserSchema = mongoose.Schema({
@@ -38,6 +36,60 @@ var UserSchema = mongoose.Schema({
 UserSchema.plugin(uniqueValidator);
 
 var User = mongoose.model('User', UserSchema);
+
+
+
+// User.remove({}, function(err) {
+//     if (err) return handleError(err);
+// });
+// app.set('views', './views/html');
+// app.set('view engine', 'ejs');
+// app.use(express.static('static'));
+
+
+
+// app.use('/', function(req, res, next) {
+
+//     if (req.session.sign) {
+//         next();
+//     }
+
+//     // return res.redirect('/login');
+// });
+
+
+
+// accounts.isLogin({
+//     success: function() {
+//         app.get('news')
+//     },
+//     fail: function() {
+
+//     }
+// });
+
+
+// app.post('/', function(req, res) {
+//     var hasher = crypto.createHash("sha256");
+
+//     var user = new User({
+//         username: req.body.username,
+//         password: hasher.update(req.body.password).digest('hex')
+//     });
+
+//     user.save(function(err) {
+//         if (err) {
+//             res.redirect('/');
+//         } else {
+//             user.save();
+//             User.find(function(err, persons) {
+//                 res.json(persons);
+//             });
+//         }
+//     });
+// });
+
+
 
 var server = app.listen(3000, function() {
     var host = server.address().address;

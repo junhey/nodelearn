@@ -58,7 +58,7 @@
         form.submit(function(){
             $.post('/login', form.serialize(), function(res){
                 if(!res.error_code) {
-                    window.location.href = '/';
+                    window.location.href = '/member';
                 }
             });
             return false;

@@ -6,7 +6,6 @@ var bodyParser = require('body-parser');
 
 module.exports = function(app) {
 
-
     app.set('views', './views/html');
     app.set('view engine', 'ejs');
     app.use(express.static('static'));
@@ -22,8 +21,6 @@ module.exports = function(app) {
     app.use(bodyParser.urlencoded({
         extended: true
     }));
-
-
 
     return app;
 };
