@@ -39,7 +39,9 @@
             
         form.submit(function(){
             $.post('/member/url/cate-save', form.serialize(), function(res){
-                console.log(res);
+                if(res.success) {
+                    alert(res.msg);
+                }
             });
             return false;
         });

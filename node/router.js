@@ -55,9 +55,7 @@ module.exports = function(app) {
 
 
     //分类列表
-    app.get('/member/url/cate-list', function(req, res, next) {
-        res.render('member/url/cate_list');
-    });
+    app.get('/member/url/cate-list', cateController.list);
 
 
     app.get('/member/url/cate-save', function(req, res, next) {

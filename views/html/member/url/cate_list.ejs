@@ -15,6 +15,69 @@
 
     <a href="/member/url/cate-save">添加分类</a>
 
-    我是网址分类列表
+
+
+
+
+
+
+
+    <div style="padding:0 20px;" id="datatable">
+                <h1 class="ui header">
+                域名列表
+                </h1>
+                <form class="ui form data-table-form" style="margin-bottom:10px;">
+
+                </form>
+                <div style="ovflow:hidden;zoom:1;">
+                    <table class="ui celled table striped selectable">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>分类名称</th>
+                                <th>排序号</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div style="overflow:hidden;  margin-bottom: 20px;">
+                        <div class="ui right floated pagination menu data-table-pager"></div>
+                    </div>
+                    <script type="text/html" class="body-tpl">
+                    <tr>
+                        <td>{{_id}}</td>
+                        <td>{{cate_name}}</td>
+                        <td>{{cate_sort}}</td>
+                        <td>编辑 删除</td>
+                    </tr>
+                    </script>
+                </div>
+            </div>
+
+
+    <script type="text/javascript" src="/npm/jquery.min.js"></script>
+    <script type="text/javascript" src="/npm/underscore.js"></script>
+    <script type="text/javascript" src="/Semantic-UI/semantic.min.js"></script>
+    <script type="text/javascript" src="/npm/jquery.extend.js"></script>
+    <script type="text/javascript" src="/npm/jquery.dataTable.js"></script>
+        <script type="text/javascript">
+            _.templateSettings = {
+              interpolate: /\{\{(.+?)\}\}/g
+            };
+
+            var table = $('#datatable').dataTable({
+                url: '/member/url/cate-list',
+                param : {
+                    page_no : 1,
+                    page_size : 2
+                }
+              });
+
+
+
+
+        </script>
 </body>
 </html>

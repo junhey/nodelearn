@@ -8,6 +8,7 @@ module.exports = function(app) {
 
     app.set('views', './views/html');
     app.set('view engine', 'ejs');
+
     app.use(express.static('static'));
 
     app.use(session({
