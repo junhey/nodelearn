@@ -7,8 +7,6 @@ function get(req, res) {
 
 function post(req, res) {
 
-    console.log(req.body);
-
     accounts.isUser({
         username: req.body.username,
         password: req.body.password,

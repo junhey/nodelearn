@@ -12,24 +12,22 @@
 
     <%- include('../head', {}) %>
     
-    <h1 class="ui header">添加分类</h1>
+    <div style="padding: 20px;">
+        <h1 class="ui header">添加分类</h1>
 
-    <form>
-        <table>
-            <tr>
-                <td>分类名称：</td>
-                <td><input name="cate_name" /></td>
-            </tr>
-            <tr>
-                <td>排序值：</td>
-                <td><input name="cate_sort" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><button>保存</button></td>
-            </tr>
-        </table>
-    </form>
+        <form class="ui form">
+          <div class="field">
+            <label>分类名称：</label>
+            <input type="text" name="cate_name" />
+          </div>
+          <div class="field">
+            <label>排序值：</label>
+            <input type="text" name="cate_sort" />
+          </div>
+          <button class="ui button teal" type="submit">提交</button>
+        </form>
+    </div>
+
 
 
     <script type="text/javascript" src="/npm/jquery.min.js"></script>
@@ -41,9 +39,7 @@
             
         form.submit(function(){
             $.post('/member/url/cate-save', form.serialize(), function(res){
-                if(!res.error_code) {
-                    window.location.href = '/member';
-                }
+                console.log(res);
             });
             return false;
         });

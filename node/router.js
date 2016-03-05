@@ -1,5 +1,6 @@
 //登陆
-var login = require('../controllers/login.js');
+var loginController = require('../controllers/login.js');
+var cateController = require('../controllers/cate.js');
 
 
 module.exports = function(app) {
@@ -28,9 +29,9 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/login', login.get);
-    app.post('/login', login.post);
-    app.get('/logout', login.logout);
+    app.get('/login', loginController.get);
+    app.post('/login', loginController.post);
+    app.get('/logout', loginController.logout);
 
     //会员首页
     app.get('/member', function(req, res, next) {
@@ -63,10 +64,10 @@ module.exports = function(app) {
         res.render('member/url/cate_save');
     });
 
-    app.post('/member/url/cate-save', function(req, res, next) {
-        console.log(req.body);
-    });
+    app.post('/member/url/cate-save', cateController.save);
 
     return app;
+
+
 
 };
