@@ -4,7 +4,7 @@ var app = express();
 require('./node/db.js')(app); //db
 require('./node/config.js')(app); //config
 require('./node/router.js')(app); //路由设置
-require('./node/schema.js'); //数据模型
+// require('./node/schema.js'); //数据模型
 
 
 var server = app.listen(3000, function() {

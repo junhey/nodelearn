@@ -1,68 +1,77 @@
 //登陆
-var loginController = require('../controllers/login.js');
-var cateController = require('../controllers/cate.js');
+// var loginController = require('../controllers/login.js');
+// var cateController = require('../controllers/cate.js');
+
+
+var user = require('../service/user/index');
 
 
 module.exports = function(app) {
 
 
 
-    var mapping = ['/member'];
+    // var mapping = ['/member'];
 
-    mapping.forEach(function(item) {
-        app.all(item, auth);
+    // mapping.forEach(function(item) {
+    //     app.all(item, auth);
+    // });
+
+    // //验证是否登陆
+    // function auth(req, res, next) {
+    //     if (req.session && req.session.sign) {
+    //         next();
+    //     } else {
+    //         res.redirect('/login');
+    //     }
+    // }
+
+
+    // app.get('/', function(req, res) {
+    //     res.render('index', {
+    //         title: 'abc'
+    //     });
+    // });
+
+    // app.get('/login', loginController.get);
+    // app.post('/login', loginController.post);
+    // app.get('/logout', loginController.logout);
+
+    app.get('/register', function(req, res, next){
+        res.render('register');
     });
 
-    //验证是否登陆
-    function auth(req, res, next) {
-        if (req.session && req.session.sign) {
-            next();
-        } else {
-            res.redirect('/login');
-        }
-    }
+    app.post('/register', user.controller.register);
+
+    // //会员首页
+    // app.get('/member', function(req, res, next) {
+    //     res.render('member/index');
+    // });
 
 
-    app.get('/', function(req, res) {
-        res.render('index', {
-            title: 'abc'
-        });
-    });
+    // //网址列表
+    // app.get('/member/url', function(req, res, next) {
+    //     res.render('member/url/list');
+    // });
 
-    app.get('/login', loginController.get);
-    app.post('/login', loginController.post);
-    app.get('/logout', loginController.logout);
+    // //添加网址
+    // app.get('/member/url/save', function(req, res, next) {
+    //     res.render('member/url/save');
+    // });
 
-    //会员首页
-    app.get('/member', function(req, res, next) {
-        res.render('member/index');
-    });
-
-
-    //网址列表
-    app.get('/member/url', function(req, res, next) {
-        res.render('member/url/list');
-    });
-
-    //添加网址
-    app.get('/member/url/save', function(req, res, next) {
-        res.render('member/url/save');
-    });
-
-    app.get('/member/url/save/:id', function(req, res, next) {
-        res.render('member/url/save');
-    });
+    // app.get('/member/url/save/:id', function(req, res, next) {
+    //     res.render('member/url/save');
+    // });
 
 
-    //分类列表
-    app.get('/member/url/cate-list', cateController.list);
+    // //分类列表
+    // app.get('/member/url/cate-list', cateController.list);
 
 
-    app.get('/member/url/cate-save', function(req, res, next) {
-        res.render('member/url/cate_save');
-    });
+    // app.get('/member/url/cate-save', function(req, res, next) {
+    //     res.render('member/url/cate_save');
+    // });
 
-    app.post('/member/url/cate-save', cateController.save);
+    // app.post('/member/url/cate-save', cateController.save);
 
     return app;
 

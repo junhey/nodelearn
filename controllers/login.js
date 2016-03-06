@@ -29,6 +29,16 @@ function post(req, res) {
     });
 }
 
+function getRegister(req, res){
+    res.render('register');
+}
+function postRegister(req, res){
+    res.send({
+        error_code: 1,
+        msg: '用户名或密码错误！'
+    });
+}
+
 function logout(req, res) {
     req.session.destroy();
     res.redirect('/');
@@ -38,5 +48,7 @@ function logout(req, res) {
 module.exports = {
     get: get,
     post: post,
-    logout: logout
+    logout: logout,
+    getRegister : getRegister,
+    postRegister : postRegister
 };

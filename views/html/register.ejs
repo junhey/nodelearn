@@ -23,11 +23,8 @@
             <form action="/login" method="post">
                 <div class="ui cards" style="margin: -250px 0 0 -150px;">
                     <div class="card mb5">
-                        <div class="image">
-                            <img src="/img/matthew.png">
-                        </div>
                         <div class="content">
-                            <div class="header mb10">Login</div>
+                            <div class="header mb10">Register</div>
                             
                             <div class="field mb10">
                                 <div class="ui left icon input">
@@ -36,16 +33,19 @@
                                 </div>
                             </div>
                             <div class="field mb10">
-                                <div class="ui left icon input mb10">
+                                <div class="ui left icon input">
                                     <i class="lock icon"></i>
                                     <input type="password" name="password" placeholder="Password">
                                 </div>
-                                <div class="right aligned">
-                                    <a href="/register">注册</a>  
+                            </div>
+                            <div class="field mb10">
+                                <div class="ui left icon input">
+                                    <i class="lock icon"></i>
+                                    <input type="password" name="re_password" placeholder="Confirm password">
                                 </div>
                             </div>
                             
-                            <button class="ui fluid large teal submit button">Login</button>
+                            <button class="ui fluid large teal submit button">Register</button>
                         </div>
                     </div>
                 </div>
@@ -59,9 +59,9 @@
         var form = $('form');
             
         form.submit(function(){
-            $.post('/login', form.serialize(), function(res){
+            $.post('/register', form.serialize(), function(res){
                 if(!res.error_code) {
-                    window.location.href = '/member';
+                    window.location.href = '/login';
                 }
             });
             return false;
