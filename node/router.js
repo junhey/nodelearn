@@ -3,9 +3,12 @@
 // var cateController = require('../controllers/cate.js');
 
 
+
 var user = require('./user/index'); //用户模块
 var cate = require('./cate/index'); //分类表
 var url = require('./url/index'); //网址
+var index = require('./index/index'); //前台首页
+
 
 module.exports = function(app) {
 
@@ -27,11 +30,7 @@ module.exports = function(app) {
     // }
 
 
-    // app.get('/', function(req, res) {
-    //     res.render('index', {
-    //         title: 'abc'
-    //     });
-    // });
+    app.get('/', index.index);
 
 
     //用户模块
@@ -53,28 +52,14 @@ module.exports = function(app) {
     app.post('/register', user.register);
 
 
-    //分类模块
-
-
 
     //会员首页
     app.get('/member', function(req, res, next) {
         res.render('member/index');
     });
 
-    // //网址列表
-    // app.get('/member/url', function(req, res, next) {
-    //     res.render('member/url/list');
-    // });
 
-    // //添加网址
-    // app.get('/member/url/save', function(req, res, next) {
-    //     res.render('member/url/save');
-    // });
-    // app.get('/member/url/save/:id', function(req, res, next) {
-    //     res.render('member/url/save');
-    // });
-
+    //url
     app.get('/member/url', url.list);
     app.get('/member/url/list', url.list);
     app.all('/member/url/save', url.save);

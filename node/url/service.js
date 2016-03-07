@@ -21,12 +21,6 @@ module.exports = {
 
             var callback = function(err, persons) {
 
-                var arr = [];
-
-
-                persons.forEach(function(item) {
-                    item.name = 'fasdfasdf';
-                });
 
 
                 if (persons) {

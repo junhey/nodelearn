@@ -9,11 +9,15 @@
 <link href="" rel="stylesheet">
 </head>
 <body>
-    <p><%= title %></p>
-    <form action="/" method="post">
-        <input name="username" />
-        <input name="password" />
-        <input type="submit" value="提交" />
-    </form>
+
+
+    <% list.forEach(function(item){ %>
+
+        <li>
+            <a href="<%= item.url_url %>" target="_blank"><%= item.url_name %></a>
+        </li>
+        
+    <% })%>
+
 </body>
 </html>
