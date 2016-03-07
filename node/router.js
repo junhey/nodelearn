@@ -3,7 +3,7 @@
 // var cateController = require('../controllers/cate.js');
 
 
-var user = require('../service/user/index');
+var user = require('./user/index'); //用户模块
 
 
 module.exports = function(app) {
@@ -32,21 +32,30 @@ module.exports = function(app) {
     //     });
     // });
 
-    // app.get('/login', loginController.get);
-    // app.post('/login', loginController.post);
-    // app.get('/logout', loginController.logout);
 
-    app.get('/register', function(req, res, next){
+
+    app.get('/login', function(req, res, next) {
+        res.render('login');
+    });
+
+    app.get('/register', function(req, res, next) {
         res.render('register');
     });
 
-    app.post('/register', user.controller.register);
+    app.get('/logout', function(req, res, next) {
+        req.session.destroy();
+        res.redirect('/');
+    });
 
-    // //会员首页
-    // app.get('/member', function(req, res, next) {
-    //     res.render('member/index');
-    // });
 
+    app.post('/login', user.login);
+
+    app.post('/register', user.register);
+
+    //会员首页
+    app.get('/member', function(req, res, next) {
+        res.render('member/index');
+    });
 
     // //网址列表
     // app.get('/member/url', function(req, res, next) {
