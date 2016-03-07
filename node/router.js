@@ -4,7 +4,7 @@
 
 
 var user = require('./user/index'); //用户模块
-
+var cate = require('./cate/index'); //分类表
 
 module.exports = function(app) {
 
@@ -33,7 +33,7 @@ module.exports = function(app) {
     // });
 
 
-
+    //用户模块
     app.get('/login', function(req, res, next) {
         res.render('login');
     });
@@ -47,10 +47,14 @@ module.exports = function(app) {
         res.redirect('/');
     });
 
-
     app.post('/login', user.login);
 
     app.post('/register', user.register);
+
+
+    //分类模块
+
+
 
     //会员首页
     app.get('/member', function(req, res, next) {
@@ -58,29 +62,23 @@ module.exports = function(app) {
     });
 
     // //网址列表
-    // app.get('/member/url', function(req, res, next) {
-    //     res.render('member/url/list');
-    // });
+    app.get('/member/url', function(req, res, next) {
+        res.render('member/url/list');
+    });
 
     // //添加网址
-    // app.get('/member/url/save', function(req, res, next) {
-    //     res.render('member/url/save');
-    // });
-
+    app.get('/member/url/save', function(req, res, next) {
+        res.render('member/url/save');
+    });
     // app.get('/member/url/save/:id', function(req, res, next) {
     //     res.render('member/url/save');
     // });
 
 
-    // //分类列表
-    // app.get('/member/url/cate-list', cateController.list);
-
-
-    // app.get('/member/url/cate-save', function(req, res, next) {
-    //     res.render('member/url/cate_save');
-    // });
-
-    // app.post('/member/url/cate-save', cateController.save);
+    //分类列表
+    app.get('/member/url/cate-list', cate.list);
+    app.all('/member/url/cate-save', cate.save);
+    app.all('/member/url/cate-del', cate.del);
 
     return app;
 

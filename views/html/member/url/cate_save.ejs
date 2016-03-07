@@ -16,13 +16,14 @@
         <h1 class="ui header">添加分类</h1>
 
         <form class="ui form">
+            <input type="hidden" name="id" value="<%= locals._id %>">
           <div class="field">
             <label>分类名称：</label>
-            <input type="text" name="cate_name" />
+            <input type="text" name="cate_name" value="<%= locals.cate_name %>" />
           </div>
           <div class="field">
             <label>排序值：</label>
-            <input type="text" name="cate_sort" />
+            <input type="text" name="cate_sort" value="<%= locals.cate_sort %>" />
           </div>
           <button class="ui button teal" type="submit">提交</button>
         </form>
@@ -31,6 +32,7 @@
 
 
     <script type="text/javascript" src="/npm/jquery.min.js"></script>
+
         <script type="text/javascript" src="/Semantic-UI/semantic.min.js"></script>
         <script type="text/javascript">
 
@@ -40,7 +42,7 @@
         form.submit(function(){
             $.post('/member/url/cate-save', form.serialize(), function(res){
                 if(res.success) {
-                    alert(res.msg);
+                    window.location.href = '/member/url/cate-list';
                 }
             });
             return false;

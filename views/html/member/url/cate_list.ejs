@@ -13,7 +13,6 @@
     <%- include('../head', {}) %>
     
 
-    <a href="/member/url/cate-save">添加分类</a>
 
 
 
@@ -21,10 +20,9 @@
 
 
 
-
-    <div style="padding:0 20px;" id="datatable">
+    <div style="padding:20px;" id="datatable">
                 <h1 class="ui header">
-                域名列表
+                分类列表 <a href="/member/url/cate-save" class="ui button teal right" style="float: right;">添加分类</a>
                 </h1>
                 <form class="ui form data-table-form" style="margin-bottom:10px;">
 
@@ -50,7 +48,10 @@
                         <td>{{_id}}</td>
                         <td>{{cate_name}}</td>
                         <td>{{cate_sort}}</td>
-                        <td>编辑 删除</td>
+                        <td>
+                            <a href="/member/url/cate-save?id={{_id}}">编辑</a>
+                            <a href="javascript:;" data-id="{{_id}}" class="J_del">删除</a>
+                        </td>
                     </tr>
                     </script>
                 </div>
@@ -61,6 +62,7 @@
     <script type="text/javascript" src="/npm/underscore.js"></script>
     <script type="text/javascript" src="/Semantic-UI/semantic.min.js"></script>
     <script type="text/javascript" src="/npm/jquery.extend.js"></script>
+    <script type="text/javascript" src="/npm/jquery.layer.min.js"></script>
     <script type="text/javascript" src="/npm/jquery.dataTable.js"></script>
         <script type="text/javascript">
             _.templateSettings = {
@@ -70,14 +72,34 @@
             var table = $('#datatable').dataTable({
                 url: '/member/url/cate-list',
                 param : {
-                    page_no : 1,
-                    page_size : 2
+                    page_size : 5
                 }
               });
 
 
 
+            console.log($.layer);
 
+            $(document).on('click', '.J_del', function(){
+
+                var id = $(this).data('id');
+                
+                $.layer.confirm('请确定删除操作', function(){
+                    $.post('/member/url/cate-del', {
+                        id : id
+                    }, function(res){
+                        if(!res.error_code) {
+                            table.init();
+                        }
+                    });
+                });
+
+
+                
+
+                
+
+            });
         </script>
 </body>
 </html>
