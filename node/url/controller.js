@@ -7,7 +7,7 @@ module.exports = {
         if (xr.toLowerCase() == 'xmlhttprequest') {
             service.getList(req, res);
         } else {
-            res.render('member/cate/list');
+            res.render('member/url/list');
         }
     },
     save: function(req, res) {

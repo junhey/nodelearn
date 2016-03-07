@@ -51,7 +51,7 @@ module.exports = {
                 }
             });
         } else {
-            res.render('member/url/cate_save');
+            res.render('member/cate/save');
         }
     },
 
@@ -76,7 +76,7 @@ module.exports = {
             CateModel.find({
                 _id: req.query.id
             }, function(err, persons) {
-                res.render('member/url/cate_save', persons[0]);
+                res.render('member/cate/save', persons[0]);
             });
         }
     },

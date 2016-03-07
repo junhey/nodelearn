@@ -40,9 +40,9 @@
         var form = $('form');
             
         form.submit(function(){
-            $.post('/member/url/cate-save', form.serialize(), function(res){
-                if(res.success) {
-                    window.location.href = '/member/url/cate-list';
+            $.post('/member/cate/save', form.serialize(), function(res){
+                if(!res.error_code) {
+                    window.location.href = '/member/cate/list';
                 }
             });
             return false;

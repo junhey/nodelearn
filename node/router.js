@@ -5,6 +5,7 @@
 
 var user = require('./user/index'); //用户模块
 var cate = require('./cate/index'); //分类表
+var url = require('./url/index'); //网址
 
 module.exports = function(app) {
 
@@ -62,23 +63,29 @@ module.exports = function(app) {
     });
 
     // //网址列表
-    app.get('/member/url', function(req, res, next) {
-        res.render('member/url/list');
-    });
+    // app.get('/member/url', function(req, res, next) {
+    //     res.render('member/url/list');
+    // });
 
     // //添加网址
-    app.get('/member/url/save', function(req, res, next) {
-        res.render('member/url/save');
-    });
+    // app.get('/member/url/save', function(req, res, next) {
+    //     res.render('member/url/save');
+    // });
     // app.get('/member/url/save/:id', function(req, res, next) {
     //     res.render('member/url/save');
     // });
 
+    app.get('/member/url', url.list);
+    app.get('/member/url/list', url.list);
+    app.all('/member/url/save', url.save);
+    app.all('/member/url/del', url.del);
+
 
     //分类列表
-    app.get('/member/url/cate-list', cate.list);
-    app.all('/member/url/cate-save', cate.save);
-    app.all('/member/url/cate-del', cate.del);
+    app.get('/member/cate', cate.list);
+    app.get('/member/cate/list', cate.list);
+    app.all('/member/cate/save', cate.save);
+    app.all('/member/cate/del', cate.del);
 
     return app;
 

@@ -79,7 +79,7 @@ $.fn.dataTable = function(opt) {
         return _.reduce(res.list, function(memo, v, i, l) {
             //数据过滤
             if (filter) {
-                v = filter(v);
+                v = filter(v, res);
             }
 
             return memo + _.template(tpl)(v);

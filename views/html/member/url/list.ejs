@@ -7,12 +7,90 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <link rel="stylesheet" type="text/css" href="/Semantic-UI/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="/npm/jquery.layer.min.css">
 </head>
 <body>
 
     <%- include('../head', {}) %>
     
+    <div style="padding:20px;" id="datatable">
+                <h1 class="ui header">
+                网址列表 <a href="/member/url/save" class="ui button teal right" style="float: right;">添加分类</a>
+                </h1>
+                <form class="ui form data-table-form" style="margin-bottom:10px;">
 
-    我是网址列表
+                </form>
+                <div style="ovflow:hidden;zoom:1;">
+                    <table class="ui celled table striped selectable">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>名称</th>
+                                <th>网址</th>
+                                <th>分类</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div style="overflow:hidden;  margin-bottom: 20px;">
+                        <div class="ui right floated pagination menu data-table-pager"></div>
+                    </div>
+                    <script type="text/html" class="body-tpl">
+                    <tr>
+                        <td>{{_id}}</td>
+                        <td>{{url_name}}</td>
+                        <td>{{url_url}}</td>
+                        <td>{{cate_cn}}</td>
+                        <td>
+                            <a href="/member/url/save?id={{_id}}">编辑</a>
+                            <a href="javascript:;" data-id="{{_id}}" class="J_del">删除</a>
+                        </td>
+                    </tr>
+                    </script>
+                </div>
+            </div>
+
+
+    <script type="text/javascript" src="/npm/jquery.min.js"></script>
+    <script type="text/javascript" src="/npm/underscore.js"></script>
+    <script type="text/javascript" src="/Semantic-UI/semantic.min.js"></script>
+    <script type="text/javascript" src="/npm/jquery.extend.js"></script>
+    <script type="text/javascript" src="/npm/jquery.layer.min.js"></script>
+    <script type="text/javascript" src="/npm/jquery.dataTable.js"></script>
+        <script type="text/javascript">
+            _.templateSettings = {
+              interpolate: /\{\{(.+?)\}\}/g
+            };
+
+            var table = $('#datatable').dataTable({
+                url: '/member/url/list',
+                filter:function(item, res){
+                    item.cate_cn = res.cate[item.url_cate];
+                    return item;
+                },
+                param : {
+                    page_size : 5
+                }
+            });
+
+
+           $(document).on('click', '.J_del', function(){
+
+                var id = $(this).data('id');
+                
+                $.layer.confirm('请确定删除操作？', function(){
+                    $.post('/member/url/del', {
+                        id : id
+                    }, function(res){
+                        if(!res.error_code) {
+                            table.init();
+                        }
+                    });
+                });
+
+            });
+        </script>
 </body>
 </html>

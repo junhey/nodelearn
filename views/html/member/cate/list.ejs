@@ -7,19 +7,12 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <link rel="stylesheet" type="text/css" href="/Semantic-UI/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="/npm/jquery.layer.min.css">
 </head>
 <body>
 
     <%- include('../head', {}) %>
     
-
-
-
-
-
-
-
-
     <div style="padding:20px;" id="datatable">
                 <h1 class="ui header">
                 分类列表 <a href="/member/url/cate-save" class="ui button teal right" style="float: right;">添加分类</a>
@@ -49,7 +42,7 @@
                         <td>{{cate_name}}</td>
                         <td>{{cate_sort}}</td>
                         <td>
-                            <a href="/member/url/cate-save?id={{_id}}">编辑</a>
+                            <a href="/member/cate/save?id={{_id}}">编辑</a>
                             <a href="javascript:;" data-id="{{_id}}" class="J_del">删除</a>
                         </td>
                     </tr>
@@ -70,22 +63,19 @@
             };
 
             var table = $('#datatable').dataTable({
-                url: '/member/url/cate-list',
+                url: '/member/cate/list',
                 param : {
                     page_size : 5
                 }
-              });
+            });
 
 
-
-            console.log($.layer);
-
-            $(document).on('click', '.J_del', function(){
+           $(document).on('click', '.J_del', function(){
 
                 var id = $(this).data('id');
                 
-                $.layer.confirm('请确定删除操作', function(){
-                    $.post('/member/url/cate-del', {
+                $.layer.confirm('请确定删除操作？', function(){
+                    $.post('/member/cate/del', {
                         id : id
                     }, function(res){
                         if(!res.error_code) {
@@ -93,11 +83,6 @@
                         }
                     });
                 });
-
-
-                
-
-                
 
             });
         </script>
